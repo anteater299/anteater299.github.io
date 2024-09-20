@@ -9,7 +9,7 @@ body {
 /* 頁首樣式 */
 header {
     background-color: #4CAF50;
-    color: white;
+    color: red;
     text-align: center;
     padding: 50px;
 }
@@ -18,7 +18,7 @@ header {
 section {
     margin: 20px;
     padding: 20px;
-    background-color: white;
+    background-color: red;
     border-radius: 8px;
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
 }
@@ -33,7 +33,7 @@ p {
 /* 頁尾樣式 */
 footer {
     background-color: #333;
-    color: white;
+    color:red;
     text-align: center;
     padding: 50px 0;
 }
