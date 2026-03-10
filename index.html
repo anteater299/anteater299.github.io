@@ -34,4 +34,35 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <!-- End Google Tag Manager (noscript) -->
 </body>
+<div class="upload-section" style="margin-top: 15px;">
+  <label style="color: #d35400; font-weight: bold;">*附件照片 (預覽)</label>
+  <div id="preview-container" style="display: flex; flex-wrap: wrap; gap: 10px; margin-top: 10px;">
+    <div id="upload-trigger" style="width: 80px; height: 80px; border: 2px dashed #ccc; display: flex; align-items: center; justify-content: center; cursor: pointer; border-radius: 8px;">
+      <span style="font-size: 24px; color: #ccc;">+</span>
+    </div>
+  </div>
+  <input type="file" id="file-input" accept="image/*" multiple style="display: none;">
+</div>
+
+<script>
+  const trigger = document.getElementById('upload-trigger');
+  const input = document.getElementById('file-input');
+  const container = document.getElementById('preview-container');
+
+  trigger.onclick = () => input.click();
+
+  input.onchange = (e) => {
+    const files = Array.from(e.target.files);
+    files.forEach(file => {
+      const url = URL.createObjectURL(file);
+      const div = document.createElement('div');
+      div.style.position = 'relative';
+      div.innerHTML = `
+        <img src="${url}" style="width: 80px; height: 80px; object-fit: cover; border-radius: 8px;">
+        <button onclick="this.parentElement.remove()" style="position: absolute; top: -5px; right: -5px; background: red; color: white; border: none; border-radius: 50%; width: 20px; height: 20px; cursor: pointer;">×</button>
+      `;
+      container.insertBefore(div, trigger);
+    });
+  };
+</script>
 </html>
