@@ -65,4 +65,53 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     });
   };
 </script>
+<head>
+    <title>上下排序清單</title>
+    <script src="https://cdn.jsdelivr.net/npm/sortablejs@1.15.0/Sortable.min.js"></script>
+    <style>
+        #sortable-list {
+            width: 300px;
+            padding: 0;
+            list-style: none;
+        }
+        .list-item {
+            padding: 15px;
+            margin: 5px 0;
+            background-color: #f8f9fa;
+            border: 1px solid #ddd;
+            cursor: grab; /* 讓滑鼠顯示「抓取」圖示 */
+            border-radius: 4px;
+            transition: background-color 0.2s;
+        }
+        /* 被拖動時的樣式 */
+        .sortable-ghost {
+            opacity: 0.4;
+            background-color: #e2e2e2;
+        }
+    </style>
+</head>
+<body>
+
+    <h2>我的任務清單</h2>
+    <ul id="sortable-list">
+        <li class="list-item">項目 1：買牛奶</li>
+        <li class="list-item">項目 2：洗衣服</li>
+        <li class="list-item">項目 3：寫程式</li>
+        <li class="list-item">項目 4：運動 30 分鐘</li>
+    </ul>
+
+    <script>
+        const el = document.getElementById('sortable-list');
+        // 初始化排序功能
+        new Sortable(el, {
+            animation: 150,       // 排序時的動畫速度 (ms)
+            ghostClass: 'sortable-ghost', // 拖動時預覽位置的樣式
+            onEnd: function (evt) {
+                console.log('舊索引:', evt.oldIndex);
+                console.log('新索引:', evt.newIndex);
+                // 這裡可以加入 API 呼叫，將新順序存入資料庫
+            }
+        });
+    </script>
+</body>
 </html>
